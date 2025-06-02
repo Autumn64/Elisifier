@@ -17,5 +17,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 CHANGELOG:
 
 2025.06.01  Mónica Gómez (Autumn64):
+    - URL de código fuente
     - Creación de repositorio
     - Software funcional

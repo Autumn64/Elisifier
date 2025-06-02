@@ -42,7 +42,7 @@ def mensaje_ayuda():
     st.markdown("**Y recuerda, si no posees música al comprarla, entonces piratearla no es robar ;).**")
     st.markdown("**Quienes pierden no son tus artistas favoritos; son las empresas de m... ;)**")
     st.divider()
-    st.markdown("**Bajo licencia AGPL v3 o superior. [Ver código fuente]()**")
+    st.markdown("**Bajo licencia AGPL v3 o superior. [Ver código fuente](https://codeberg.org/Autumn64/Elisifier)**")
 
 # Callback de los botones
 def callback(value: bool):
