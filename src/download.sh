@@ -26,23 +26,29 @@ cd download
 mkdir -p "$1"
 cd "$1"
 
-# URL de la playlist
-playlist_url="$3"
+# URL de la playlist con todos los links
+playlist_urls="${@:3}"
 
 # Formato
 fmt="$2"
 
-# Descarga audio + miniatura + metadatos
-if ! yt-dlp -f "bestaudio/best" \
+# Descarga audio + miniatura + metadatos de los links expandidos
+yt-dlp -f "bestaudio/best" \
   -o "%(playlist_index)s %(channel)s - %(title)s.%(ext)s" \
   -x --audio-format "$fmt" --audio-quality 0 \
   --embed-thumbnail --embed-metadata \
   --write-thumbnail --convert-thumbnails jpg \
-  "$playlist_url" ; then
-  echo "Error downloading"
+  ${playlist_urls[@]} 2>&1
+
+# Esto se agregó porque yt-dlp puede mandar mensajes de error y aún así continuar con la descarga,
+# lo cual afecta el funcionamiento del script. Revise https://codeberg.org/Autumn64/Elisifier/issues/1
+# para más información.
+if ! ls *."$fmt" 1>/dev/null 2>&1; then
+  echo "FATAL ERROR: No audio files were downloaded."
   exit 1
 fi
 
+# yt-dlp sólo lee `vorbis`, pero luego los archivos se descargan como `ogg`
 if [ $fmt == "vorbis" ]; then
   fmt="ogg"
 fi

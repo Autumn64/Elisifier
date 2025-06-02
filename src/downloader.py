@@ -27,7 +27,7 @@ import streamlit as st
 
 class Downloader():
     def __init__(self, url, fmt, progress, status, script, rmscript):
-        self.url = url
+        self.url = url.split(" ") # Hace split para poder leer todas las urls
         self.fmt = fmt
         self.progress = progress # Debe ser un `st.progress`
         self.status = status # Debe ser un `st.status`
@@ -50,24 +50,34 @@ class Downloader():
     
     # Ejecuta el script `download.sh` y captura STDOUT para ponerlo en Streamlit
     def ejecutarDescarga(self):
-        ydl = subprocess.Popen(stdout=subprocess.PIPE, text=True, args=[self.script, self.uuid, self.fmt, self.url])
+        # Desempaqueta la lista de las urls
+        ydl = subprocess.Popen(stdout=subprocess.PIPE, text=True, args=[self.script, self.uuid, self.fmt, *self.url])
 
         while (line := ydl.stdout.readline()) != "":
             linea = line.rstrip()
+            # Comprobación si no se pudo descargar ningún archivo
+            if "FATAL ERROR: No audio files were downloaded." in linea:
+                st.session_state['dstate'] = "failed"
+                self.eliminarTodo(False)
+                return
+
+            # Si una o más canciones no se pudieron descargar, notifica a Streamlit y continúa
+            if "ERROR:" in linea and st.session_state['derrors'] == False:
+                st.session_state['derrors'] = True
+
             if "Downloading item " in linea:
                 regex = re.search(r'item (\d+) of (\d+)', linea)
-                n1 = regex.group(1)
-                n2 = regex.group(2)
+                n1 = regex.group(1); n2 = regex.group(2)
                 self.actualizarProgreso((float(n1) / float(n2) ), f"Descargando canción {n1} de {n2}...")
 
             self.actualizarStatus(linea, "running")
 
             if "Done." in linea:
                 self.actualizarStatus(linea, "complete")
-                self.actualizarProgreso(100, "Completado.")
+                self.actualizarProgreso(100, "Procesando...")
                 self.crearZip()
                 st.session_state['dstate'] = "finished"
-                self.eliminarTodo()
+                self.eliminarTodo(True)
 
     # Guarda la carpeta de descarga en un zip
     def crearZip(self):
@@ -75,8 +85,9 @@ class Downloader():
         self.actualizarStatus("Archivo listo para descarga.", "complete")
 
     # Elimina la carpeta de antemano y ejecuta en modo detached el script que eliminará el zip después de un tiempo
-    def eliminarTodo(self):
+    def eliminarTodo(self, run_script: bool):
         shutil.rmtree(f"./download/{self.uuid}/")
+        if run_script == False: return
         subprocess.Popen(
             preexec_fn = os.setsid,
             args = [self.rmscript, f"./download/{self.uuid}.zip"]

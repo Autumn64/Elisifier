@@ -16,6 +16,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 CHANGELOG:
 
+2025.06.02  Mónica Gómez (Autumn64):
+    - Solucionado issue #1 https://codeberg.org/Autumn64/Elisifier/issues/1
+    - Agregada capacidad de descargar desde varios links diferentes
+
 2025.06.01  Mónica Gómez (Autumn64):
     - URL de código fuente
     - Creación de repositorio

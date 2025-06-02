@@ -25,11 +25,11 @@ La mayoría de dependencias para Elisifier ya vienen en el archivo `requirements
 ```
 ffmpeg (para la conversión y codificación de audio)
 ImageMagick (para el procesado de AlbumArts)
-Kid3 (para la modificación de metadatos)
+Kid3-cli (para la modificación de metadatos)
 ```
 Puede instalar estos componentes desde el gestor de paquetes de su distribución. También puede optar por instalar `yt-dlp` de manera global en su sistema.
 
-**Los comandos mostrados a continuación aplican para GNU/Linux. Adáptelos dependiendo de su sistema operativo.**
+**Los comandos mostrados a continuación, así como el script proporcionado, aplican para GNU/Linux. Adáptelos dependiendo de su sistema operativo.**
 
 - Clone este repositorio
 ```sh

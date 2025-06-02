@@ -23,8 +23,8 @@ from downloader import Downloader
 # Los `st.columns` que aparentemente están a lo random son 
 # en realidad para centrar los elementos en la pantalla.
 
-# El session_state `dstate` tiene cuatro valores posibles: `idle`, `downloading`, `finished` y `urlerror`.
-# Streamlit reacciona de manera distinta a cada `dstate`.
+# El session_state `dstate` tiene cinco valores posibles: `idle`, `downloading`, `finished`,
+# `urlerror` y `failed`. Streamlit reacciona de manera distinta a cada `dstate`.
 
 # Adicionalmente, streamlit toma el session_state de la URL de descarga, el formato y el UUID 
 # generado para cada descarga individual.
@@ -38,8 +38,8 @@ from downloader import Downloader
 def mensaje_ayuda():
     st.markdown("### Pon una URL, da click a `Iniciar descarga`, y ¡disfruta!")
     st.markdown("**Elisifier** está basado en `yt-dlp`. Si bien este componente soporta [muchos](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) sitios web distintos, esta app sólo admite links de YouTube por razones de practicidad y complejidad.")
-    st.markdown("Los links de Invidious y Piped funcionan sin problema, aunque es posible que alguna instancia no funcione si tiene una URL extraña.")
-    st.markdown("**Y recuerda, si no posees música al comprarla, entonces piratearla no es robar ;).**")
+    st.markdown("Los links de Invidious y Piped funcionan (excepto las playlists, que esas no las lee), aunque es posible que alguna instancia no funcione si tiene una URL extraña.")
+    st.markdown("**Y recuerda: si no posees tu música al comprarla, entonces piratearla no es robar ;).**")
     st.markdown("**Quienes pierden no son tus artistas favoritos; son las empresas de m... ;)**")
     st.divider()
     st.markdown("**Bajo licencia AGPL v3 o superior. [Ver código fuente](https://codeberg.org/Autumn64/Elisifier)**")
@@ -84,7 +84,9 @@ def menu_descarga():
         st.session_state['dstate'] = 'idle'
         return
 
-    st.markdown("<h3 style='text-align: center; '>Canciones procesadas con éxito.</h3><br>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; '>Canciones procesadas con éxito.</h3>", unsafe_allow_html=True)
+    if st.session_state['derrors'] == True:
+        st.markdown("<h5 style='text-align: center; '>Algunas canciones no se descargaron. Quizás tienen restricción de edad o no están disponibles.</h5><br>", unsafe_allow_html=True)
     
     # Botón de descarga basado en el UUID
     with open(f"./download/{dId}.zip", "rb") as f:
@@ -100,6 +102,11 @@ def menu_descarga():
 # Despliegue del menú principal
 def menu_principal():
     banner()
+
+    # Comprobación de errores
+    if st.session_state['dstate'] == "failed":
+        st.error("No se pudieron descargar las canciones. Refresque la página e inténtelo más tarde.")
+        return
 
     if st.columns([2.3, 1, 2.2])[1].button("Ayuda", disabled=st.session_state['drunning']): mensaje_ayuda()
 
@@ -118,6 +125,7 @@ def menu_principal():
         st.rerun()
     
     if sButton:
+        st.session_state['derrors'] = False
         st.session_state['dfmt'] = format_combo
         st.session_state['durl'] = url
         st.session_state['dstate'] = "downloading"
@@ -137,11 +145,13 @@ if __name__ == "__main__":
         page_title = "Descargar música de YT Music"
     )
 
-    # Session state de url, formato y estado de descarga
+    # Session state de url, formato, chequeo de errores y estado de descarga
     if 'durl' not in st.session_state:
         st.session_state['durl'] = ""
     if 'dfmt' not in st.session_state:
         st.session_state['dfmt'] = ""
+    if 'derrors' not in st.session_state:
+        st.session_state['derrors'] = False
     if 'dstate' not in st.session_state:
         st.session_state['dstate'] = "idle"
     if 'drunning' not in st.session_state:
