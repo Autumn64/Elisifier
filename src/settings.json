@@ -1,0 +1,11 @@
+{
+    "accepted": [
+        "youtube.com",
+        "youtu.be", 
+        "invidious",
+        "inv",
+        "yewtu.be",
+        "id.420129.xyz"
+    ],
+    "block_foreign_urls": true
+}

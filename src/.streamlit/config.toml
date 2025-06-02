@@ -1,0 +1,10 @@
+[client]
+toolbarMode = "viewer"
+
+[server]
+headless = true
+port = 8501
+
+[browser]
+serverAddress = "localhost"
+gatherUsageStats = false
