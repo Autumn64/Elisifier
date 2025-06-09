@@ -16,11 +16,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 CHANGELOG:
 
-2025.06.02  Mónica Gómez (Autumn64):
+2025-06-08  Mónica Gómez (Autumn64):
+    - Código modificado de acuerdo a las
+    recomendaciones de Lin Chiao https://tkz.one/@linchiao/114615214198216273
+    - Agregadas modificaciones menores en la interfaz para mejorar la experiencia de usuario
+
+2025-06-02  Mónica Gómez (Autumn64):
     - Solucionado issue #1 https://codeberg.org/Autumn64/Elisifier/issues/1
     - Agregada capacidad de descargar desde varios links diferentes
 
-2025.06.01  Mónica Gómez (Autumn64):
+2025-06-01  Mónica Gómez (Autumn64):
     - URL de código fuente
     - Creación de repositorio
     - Software funcional

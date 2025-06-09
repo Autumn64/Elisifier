@@ -15,3 +15,6 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 TODOs:
+    - Hacer logotipo del servicio
+    - Refactorizar el código de modo que ya no se dependa del script `download.sh`, 
+    sino que Python se encargue de todo.
