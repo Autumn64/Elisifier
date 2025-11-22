@@ -5,7 +5,13 @@
 [![Stars](https://img.shields.io/badge/dynamic/json.svg?label=stars&style=for-the-badge&color=yellow&url=https://codeberg.org/api/v1/repos/Autumn64/Elisifier&query=stars_count)](https://codeberg.org/Autumn64/Elisifier)
 [![License](https://img.shields.io/badge/license-AGPL_v3-blue?label=license&style=for-the-badge&url=)](https://codeberg.org/Autumn64/Elisifier/src/branch/main/LICENSE)
 
+![Logo de Elisifier](doc_res/logo_brand.svg)
+
 ## Un descargador de música libre y online
+
+![Captura 1](doc_res/ss1.png)
+![Captura 1](doc_res/ss2.png)
+![Captura 1](doc_res/ss3.png)
 
 ### Descripción
 Elisifier es un _software_ en línea hecho con [Flask](https://palletsprojects.com/projects/flask/) y [yt-dlp](https://github.com/yt-dlp/yt-dlp), que permite descargar música y _playlists_ desde YT de forma rápida y sencilla.

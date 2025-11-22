@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elisifier</title>
+    <link href="res/icon.png" rel="icon">
     <link href="css/index.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -24,7 +25,7 @@
         </div>
         <div class="modal-body">
             <p><strong>Elisifier</strong> está basado en `yt-dlp`. Si bien este componente soporta <a href="https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md" target="_blank">muchos</a> sitios web distintos, la app en sí sólo admite links de YouTube por razones de practicidad y complejidad.</p>
-            <p>Los links de Invidious y Piped funcionan (excepto las playlists, que esas no las lee), aunque es posible que alguna instancia no funcione si yt-dlp no la reconoce.</p>
+            <p>Los links de Invidious y Piped funcionan (excepto las playlists; sólo reconoce las de YouTube), aunque es posible que alguna instancia no funcione si yt-dlp no la reconoce.</p>
             <br>
             <p>Bajo licencia AGPL v3 o superior.</p>
         </div>
@@ -37,7 +38,7 @@
 
     <nav class="navbar navbar-expand-sm bg-body-tertiary mb-5">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">Elisifier</a>
+        <a class="navbar-brand ms-3" href="index.html"><img src="res/logo.svg" style="height: 30px;"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -71,7 +72,7 @@
     </nav>
 
     <main class="container-fluid text-center my-5 pt-2" style="max-width: 600px;">
-        <h1 class="h1 my-5">Elisifier</h1>
+        <img class="my-5" src="res/logo.svg" style="max-width: 80%;">
         <h3 class="h3 mb-5">Descargador de música libre y online</h3>
         <h3 class="h3 my-5">Bajo licencia AGPL v3 o superior.</h3>
         <h5 class="h5 my-5">v2.0.1</h5>
