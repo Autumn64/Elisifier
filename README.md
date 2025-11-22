@@ -29,9 +29,13 @@ Kid3-cli (para la modificación de metadatos)
 ```
 Puede instalar estos componentes desde el gestor de paquetes de su distribución. También puede optar por instalar `yt-dlp` de manera global en su sistema.
 
+Adicionalmente, Elisifier utiliza `deno`, siguiendo las [recomendaciones de yt-dlp](https://github.com/yt-dlp/yt-dlp/issues/15012). Puede descargar e instalar `deno` con el comando proporcionado en su [página oficial](https://deno.com/).
+
 #### Frontend
 
 El frontend de Elisifier puede hostearse desde un servidor Apache o Nginx tradicional, o desde algún servicio como GitHub Pages o Cloudflare Pages, ya que consiste en código HTML y JavaScript que no requiere renderizado del lado del servidor.
+
+No olvide editar la URL del socket en el archivo `src/js/index.js`, que debería apuntar hacia el backend.
 
 #### Backend
 
@@ -61,6 +65,8 @@ python3 -m venv .
     "block_foreign_urls": true
 }
 ```
+- Cree la carpeta `/src/download`, ya que sin ella Flask no podrá manejar los archivos correctamente.
+
 - Ejecute el archivo `run.sh`
 ```sh
 ./run.sh
@@ -72,7 +78,7 @@ El script se encargará de habilitar el entorno virtual, de descargar las depend
 Si desea contribuir, por favor haga un fork de este repositorio, y cree una [pull request](https://codeberg.org/Autumn64/Elisifier/pulls) con sus propuestas. Tiene permitido modificar y/o redistribuir todo el código de este repo, siempre y cuando lo haga acatando los términos estipulados en la [Licencia Pública General Affero de GNU versión 3](./COPYING) o cualquier versión superior.
 
 ### Información extra
-La naturaleza de este proyecto hace que éste sea muy vulnerable a ataques y a la censura por parte de Google o de cualquier otra empresa. Por esta razón, Elisifier se desarrolló con el propósito de ser descentralizado y fácilmente autohosteable. Elisifier no está afiliado a yt-dlp, ni a Invidious, ni a ningún proyecto relacionado con YT.
+La naturaleza de este proyecto lo vuelve muy vulnerable a ataques y a la censura por parte de Google o de cualquier otra empresa. Por esta razón, Elisifier se desarrolló con el propósito de ser descentralizado y fácilmente autohosteable. Elisifier no está afiliado a yt-dlp, ni a Invidious, ni a ningún proyecto relacionado con YT.
 
 Muchísimas gracias a todas y todos nuestros [contribuyentes](https://codeberg.org/Autumn64/Elisifier/activity/yearly).
 

@@ -1,5 +1,5 @@
 // URL del backend de la instancia al que se conectará con el socket.
-const url = "http://192.168.100.15:5000/";
+const url = "URL";
 const socket = io(url);
 
 const setInfo = (message) =>{
