@@ -78,3 +78,10 @@ $("#mainForm").on("submit", e =>{
 
     window.scrollTo(0, document.body.scrollHeight);
 });
+
+$(window).on("load", () =>{
+    if (!localStorage.getItem("elisifier-firstrun")){
+        $("#helpModal").modal("show");
+        localStorage.setItem("elisifier-firstrun", true);
+    }
+});
