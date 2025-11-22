@@ -1,3 +1,5 @@
 yt-dlp
-streamlit
+flask
+flask-socketio
+eventlet
 mutagen

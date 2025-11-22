@@ -1,11 +1,13 @@
 {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "cors": "*",
     "accepted": [
         "youtube.com",
         "youtu.be", 
         "invidious",
-        "inv",
-        "yewtu.be",
-        "id.420129.xyz"
+        "inv.",
+        "yewtu.be"
     ],
     "block_foreign_urls": true
 }

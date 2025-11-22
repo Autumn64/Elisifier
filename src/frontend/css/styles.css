@@ -1,0 +1,9 @@
+svg {
+    max-width: 30px;
+    fill: black;
+}
+
+.dropdown-toggle svg {
+    width: 30px;
+    margin: -2px 0;
+}

@@ -8,10 +8,10 @@
 ## Un descargador de música libre y online
 
 ### Descripción
-Elisifier es un _software_ en línea hecho con [Streamlit](https://streamlit.io/) y [yt-dlp](https://github.com/yt-dlp/yt-dlp), que permite descargar música y _playlists_ desde YT de forma rápida y sencilla.
+Elisifier es un _software_ en línea hecho con [Flask](https://palletsprojects.com/projects/flask/) y [yt-dlp](https://github.com/yt-dlp/yt-dlp), que permite descargar música y _playlists_ desde YT de forma rápida y sencilla.
 
 ### Características
-- Hecho con Streamlit y yt-dlp.
+- Hecho con Flask y yt-dlp.
 - Descarga tanto canciones como playlists y las comprime en un archivo zip.
 - Descarga en la calidad máxima disponible.
 - Permite seleccionar entre los formatos de audio más populares.
@@ -29,6 +29,12 @@ Kid3-cli (para la modificación de metadatos)
 ```
 Puede instalar estos componentes desde el gestor de paquetes de su distribución. También puede optar por instalar `yt-dlp` de manera global en su sistema.
 
+#### Frontend
+
+El frontend de Elisifier puede hostearse desde un servidor Apache o Nginx tradicional, o desde algún servicio como GitHub Pages o Cloudflare Pages, ya que consiste en código HTML y JavaScript que no requiere renderizado del lado del servidor.
+
+#### Backend
+
 **Los comandos mostrados a continuación, así como el script proporcionado, aplican para GNU/Linux. Adáptelos dependiendo de su sistema operativo.**
 
 - Clone este repositorio
@@ -39,25 +45,34 @@ git clone https://codeberg.org/Autumn64/Elisifier.git
 ```sh
 python3 -m venv .
 ```
-- Modifique el archivo `src/.streamlit/config.toml`, y establezca el campo `serverAddress` de modo que apunte a su URL o dirección IP
-```toml
-[browser]
-serverAddress = "<URL o IP>"
+- Modifique el archivo `src/backend/settings.json`, y adáptelo a sus propias necesidades.
+```json
+{
+    "host": "IP",
+    "port": 5000,
+    "cors": "www.sitioweb.com",
+    "accepted": [
+        "youtube.com",
+        "youtu.be", 
+        "invidious",
+        "inv.",
+        "yewtu.be"
+    ],
+    "block_foreign_urls": true
+}
 ```
 - Ejecute el archivo `run.sh`
 ```sh
 ./run.sh
 ```
-El script se encargará de habilitar el entorno virtual, de descargar las dependencias del archivo `requirements.txt`, y de ejecutar Elisifier. El servicio se expondrá por el puerto designado en el archivo `src/.streamlit/config.toml`.
-
-También puede hostear mediante Docker o con cualquier otro método, siguiendo [la guía oficial de Streamlit](https://docs.streamlit.io/deploy/tutorials). También puede usar un túnel o un proxy inverso para exponer el servicio en la internet.
+El script se encargará de habilitar el entorno virtual, de descargar las dependencias del archivo `requirements.txt`, y de ejecutar Elisifier. El _backend_ del servicio se expondrá por el puerto designado en el archivo de configuración.
 
 ### Directrices de contribuciones
 
 Si desea contribuir, por favor haga un fork de este repositorio, y cree una [pull request](https://codeberg.org/Autumn64/Elisifier/pulls) con sus propuestas. Tiene permitido modificar y/o redistribuir todo el código de este repo, siempre y cuando lo haga acatando los términos estipulados en la [Licencia Pública General Affero de GNU versión 3](./COPYING) o cualquier versión superior.
 
 ### Información extra
-La naturaleza de este proyecto hace que éste sea muy vulnerable a ataques y a la censura por parte de Google o de cualquier otra empresa. Por esta razón, Elisifier se desarrolló con el propósito de ser descentralizado y fácilmente autohosteable. Elisifier no está afiliado a Streamlit, ni a yt-dlp, ni a Invidious, ni a ningún proyecto relacionado con YT.
+La naturaleza de este proyecto hace que éste sea muy vulnerable a ataques y a la censura por parte de Google o de cualquier otra empresa. Por esta razón, Elisifier se desarrolló con el propósito de ser descentralizado y fácilmente autohosteable. Elisifier no está afiliado a yt-dlp, ni a Invidious, ni a ningún proyecto relacionado con YT.
 
 Muchísimas gracias a todas y todos nuestros [contribuyentes](https://codeberg.org/Autumn64/Elisifier/activity/yearly).
 

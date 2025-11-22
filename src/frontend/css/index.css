@@ -1,0 +1,12 @@
+#outputDiv {
+    font-size: medium;
+    font-family: monospace;
+    height: 300px;
+    overflow-wrap: break-word;
+    overflow-y: scroll;
+}
+
+#fmtSelect {
+    max-width: 120px;
+    margin: 0 auto;
+}

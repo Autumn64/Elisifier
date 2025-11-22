@@ -18,5 +18,4 @@
 
 source ./bin/activate
 ./bin/python3 -m pip install -r requirements.txt
-cd src
-streamlit run main.py
+python3 src/backend/main.py

@@ -22,7 +22,6 @@ if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
 fi
 
 # Carpeta de trabajo
-cd download
 mkdir -p "$1"
 cd "$1"
 
@@ -34,23 +33,24 @@ fmt="$2"
 
 # Descarga audio + miniatura + metadatos de los links expandidos
 yt-dlp -f "bestaudio/best" \
-  -o "%(playlist_index)s %(channel)s - %(title)s.%(ext)s" \
+  -o "%(channel)s - %(title)s.%(ext)s" \
   -x --audio-format "$fmt" --audio-quality 0 \
   --embed-thumbnail --embed-metadata \
-  --write-thumbnail --convert-thumbnails jpg \
+  --write-thumbnail --convert-thumbnails jpg --remote-components ejs:github \
   ${playlist_urls[@]} 2>&1
 
 # Esto se agregó porque yt-dlp puede mandar mensajes de error y aún así continuar con la descarga,
 # lo cual afecta el funcionamiento del script. Revise https://codeberg.org/Autumn64/Elisifier/issues/1
 # para más información.
-if ! ls *."$fmt" 1>/dev/null 2>&1; then
-  echo "FATAL ERROR: No audio files were downloaded."
-  exit 1
-fi
 
 # yt-dlp sólo lee `vorbis`, pero luego los archivos se descargan como `ogg`
 if [ $fmt == "vorbis" ]; then
   fmt="ogg"
+fi
+
+if ! ls *."$fmt" 1>/dev/null 2>&1; then
+  echo "FATAL ERROR: No audio files were downloaded."
+  exit 1
 fi
 
 # Procesa cada imagen descargada

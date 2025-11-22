@@ -16,6 +16,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 CHANGELOG:
 
+2025-11-21  Mónica Gómez (Autumn64):
+    - Reimplementación completa del proyecto en Flask
+    - Agregado frontend predeterminado en Bootstrap
+
 2025-06-08  Mónica Gómez (Autumn64):
     - Código modificado de acuerdo a las
     recomendaciones de Lin Chiao https://tkz.one/@linchiao/114615214198216273

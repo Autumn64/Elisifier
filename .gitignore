@@ -5,9 +5,6 @@ lib
 lib64
 pyvenv.cfg
 .vscode
-src/__pycache__
-download/__pycache
-__pycache__
 *.zip
 tmp/
 share/
